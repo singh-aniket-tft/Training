@@ -1,0 +1,13 @@
+@function rem($px...) {
+  $result: ();
+  @each $p in $px {
+    $result: append($result, ($p / 16) + rem);
+  }
+  @return $result;
+}
+
+
+// Shade color dynamically
+@function shade-color($color, $percent) {
+  @return mix(black, $color, $percent);
+}

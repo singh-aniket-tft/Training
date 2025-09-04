@@ -1,0 +1,26 @@
+$primary-color: #ff69b4;
+$secondary-color: #c0c0c0;
+$font-stack: 'Arial', sans-serif;
+
+$font-stack: 'Arial', sans-serif;
+$spacing-unit: 8px;
+
+// placeholders (themes override these)
+$background-color: null;
+$text-color: null;
+$primary-color: null;
+
+// Fonts & Spacing
+$font-stack: 'Arial', sans-serif;
+$spacing-unit: 8px;
+
+// Colors (default placeholders, overridden by themes)
+$background-color: null;
+$text-color: null;
+$primary-color: null;
+// $secondary-color: null;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1200px;

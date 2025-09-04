@@ -1,0 +1,32 @@
+// Responsive mixin
+@mixin respond($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) { @content; }
+  }
+}
+
+// Flexbox center
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Button style
+@mixin button-style($bg-color, $text-color: white) {
+  padding: $spacing-unit * 2;
+  border: none;
+  border-radius: 6px;
+  background-color: $bg-color;
+  color: $text-color;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}

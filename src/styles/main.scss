@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'mixins';
+@import "functions";    
+
+body {
+  font-family: $font-stack;
+  background-color: $secondary-color;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: $primary-color;
+}
+
+
+// Default = light theme
+@import "themes/light";
+@import "global";
+
+// Dark theme overrides when body has .dark-theme
+body.dark-theme {
+  @import "themes/dark";
+  @import "global";
+}

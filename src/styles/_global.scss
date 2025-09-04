@@ -1,0 +1,110 @@
+body {
+  margin: rem(0);
+  padding: rem(0);
+  font-family: $font-stack;
+  background-color: $background-color;
+  color: $text-color;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3 {
+  margin: rem(16) rem(0); // use rem() for each value separately
+}
+
+p {
+  margin: rem(8) rem(0);
+}
+
+button {
+  @include button-style($primary-color);
+}
+
+
+h1 {
+  color: $primary-color;
+}
+
+button {
+  padding: $spacing-unit * 2;
+  border: none;
+  border-radius: 6px;
+  background-color: $primary-color;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+
+// Example typography
+h1, h2, h3, h4, h5, h6 {
+  margin: rem(16) 0;
+  font-weight: bold;
+}
+
+p {
+  margin: rem(8) 0;
+  line-height: 1.5;
+}
+
+// Example button using mixin
+button {
+  @include button-style($primary-color);
+}
+
+// Base form container
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: rem(40) auto;
+  padding: rem(24);
+  background: $secondary-color;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background-color 0.3s;
+
+  h2 {
+    text-align: center;
+    margin-bottom: rem(20);
+    color: $primary-color;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: rem(16);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: rem(6);
+      font-weight: bold;
+      color: $text-color;
+    }
+
+    input {
+      padding: $spacing-unit * 2;
+      border: 1px solid lighten($secondary-color, 20%);
+      border-radius: 6px;
+      font-size: rem(16);
+      transition: 0.2s;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+        box-shadow: 0 0 5px rgba($primary-color, 0.4);
+      }
+    }
+  }
+
+  button {
+    @include button-style($primary-color, white);
+  }
+}
+
