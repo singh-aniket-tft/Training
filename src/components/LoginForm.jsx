@@ -1,29 +1,44 @@
 import React, { useState } from "react";
+import ConfirmModal from "./ConfirmModal";
 import "../styles/main.scss";
 
 function LoginForm() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+  const [formData, setFormData] = useState({ email: "", password: "" });
+
+  const [modal, setModal] = useState({
+    open: false,
+    type: null, // "submit" | "clear"
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Email: ${formData.email}\nPassword: ${formData.password}`);
+  const openSubmitModal = (e) => {
+    e.preventDefault(); // prevent immediate submit
+    setModal({ open: true, type: "submit" });
+  };
+
+  const openClearModal = () => setModal({ open: true, type: "clear" });
+
+  const closeModal = () => setModal({ open: false, type: null });
+
+  const confirmAction = () => {
+    if (modal.type === "submit") {
+      // do your real submit here (API, etc.)
+      alert(`Submitted!\nEmail: ${formData.email}\nPassword: ${formData.password}`);
+    } else if (modal.type === "clear") {
+      setFormData({ email: "", password: "" });
+    }
+    closeModal();
   };
 
   return (
     <div className="form-container">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        {/* Email Input */}
+
+      <form onSubmit={openSubmitModal}>
+        {/* Email */}
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -36,7 +51,7 @@ function LoginForm() {
           />
         </div>
 
-        {/* Password Input */}
+        {/* Password */}
         <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
@@ -49,9 +64,30 @@ function LoginForm() {
           />
         </div>
 
-        {/* Submit Button */}
-        <button type="submit">Login</button>
+        {/* Buttons */}
+        <div className="button-group">
+          <button type="submit" className="btn-submit">Submit</button>
+          <button type="button" className="btn-clear" onClick={openClearModal}>
+            Clear
+          </button>
+        </div>
       </form>
+
+      {/* Modals */}
+      <ConfirmModal
+        open={modal.open && modal.type === "submit"}
+        title="Confirm Submission"
+        message="Are you sure you want to submit?"
+        onConfirm={confirmAction}
+        onCancel={closeModal}
+      />
+      <ConfirmModal
+        open={modal.open && modal.type === "clear"}
+        title="Confirm Clear"
+        message="Are you sure you want to clear the form?"
+        onConfirm={confirmAction}
+        onCancel={closeModal}
+      />
     </div>
   );
 }

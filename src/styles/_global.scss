@@ -108,3 +108,65 @@ button {
   }
 }
 
+// Button group container
+.button-group {
+  display: flex;
+  gap: $spacing-unit * 2;
+  justify-content: center;
+  margin-top: rem(12);
+}
+
+// Submit button
+.btn-submit {
+  @include button-style($primary-color, white);
+}
+
+// Clear button
+.btn-clear {
+  @include button-style($secondary-color, black);
+}
+
+/* --- Modal --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  width: min(90vw, 420px);
+  background: $background-color;
+  color: $text-color;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  padding: rem(20);
+  border: 1px solid lighten($secondary-color, 10%);
+}
+
+.modal-title {
+  margin: 0 0 rem(8) 0;
+  color: $primary-color;
+}
+
+.modal-message {
+  margin: 0 0 rem(16) 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: $spacing-unit * 2;
+  justify-content: flex-end;
+
+  .btn-cancel {
+    @include button-style($secondary-color, black);
+  }
+
+  .btn-confirm {
+    @include button-style($primary-color, white);
+  }
+}
+
