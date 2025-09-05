@@ -9,7 +9,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // Replace this with your real auth check (API call, etc.)
+  
   const checkPassword = (username, password) => {
     // Example: accept password "secret123" for any username.
     return password === 'secret123';
