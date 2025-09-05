@@ -1,62 +1,28 @@
-// src/App.jsx
-import React, { useState } from 'react';
+// src/Entery.jsx
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import './styles/main.scss';
-
-// Your components
-import Header from './components/header';       
-import LoginForm from './components/LoginForm';  
-import { Navbar } from './components';
-
-// Pages
+import Navbar from './components/Navbar/Navbar'; // direct import or use { Navbar } from './components'
 import Home from './pages/Home';
-import About from './pages/About';
 import Login from './pages/Login';
+// import other components (your form) if needed
+import LoginForm from './components/LoginForm'; // if you still want it
 
-function Entery() {
-  const [theme, setTheme] = useState('light');
-
-  const toggleTheme = () => {
-    setTheme((t) => (t === 'light' ? 'dark' : 'light'));
-    document.body.classList.toggle('dark-theme');
-  };
-
+export default function Entery() {
   return (
     <BrowserRouter>
-      {/* Navbar at top */}
       <Navbar />
 
-      
-      <header
-        style={{
-          padding: 12,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Header />
-        <button onClick={toggleTheme} style={{ padding: '6px 10px' }}>
-          Toggle Theme
-        </button>
-      </header>
-
-      {/* Routing */}
       <main style={{ padding: 16 }}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          {/* Use /login for the login page that navigates to /home */}
           <Route path="/login" element={<Login />} />
+          {/* Home reads username from navigation state */}
+          <Route path="/home" element={<Home />} />
+          {/* Keep your original form as default if you want it at '/' */}
+          <Route path="/" element={<LoginForm />} />
           <Route path="/form" element={<LoginForm />} />
         </Routes>
       </main>
     </BrowserRouter>
   );
 }
-
-export default Entery;
-
-
-
-
