@@ -1,14 +1,23 @@
 import React, { useEffect } from "react";
 
 function ConfirmModal({ open, title = "Confirm", message, onConfirm, onCancel }) {
-  if (!open) return null;
-
-  // Close on ESC
+  // Hooks must run unconditionally (always), so we call useEffect here
+  // and guard inside it to only attach the listener when `open` is true.
   useEffect(() => {
-    const onKey = (e) => e.key === "Escape" && onCancel();
+    if (!open) return; // guard inside the hook
+
+    const onKey = (e) => {
+      if (e.key === "Escape") onCancel?.();
+    };
+
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onCancel]);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open, onCancel]);
+
+  // Early return is fine *after* hooks have been called
+  if (!open) return null;
 
   const stop = (e) => e.stopPropagation();
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ConfirmModal from "./ConfirmModal";
 import "../styles/main.scss";
 
+
 function LoginForm() {
   const [formData, setFormData] = useState({ email: "", password: "" });
 
